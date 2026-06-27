@@ -158,7 +158,6 @@ def validate_email(email):
     return re.match(pattern, email) is not None
 
 def validate_password(password):
-    # Enforce minimum 8 characters (improved security)
     if len(password) < 8:
         return False, 'Password must be at least 8 characters'
     if not any(c.isalpha() for c in password):
@@ -387,7 +386,7 @@ def upload_resume():
             file_path=filepath,
             file_size=len(file_content),
             file_type=file.filename.rsplit('.', 1)[1].lower(),
-            extracted_text=text[:2000],  # store first 2000 chars
+            extracted_text=text[:2000],
             overall_score=analysis['overall_score'],
             skills_score=analysis['skills_score'],
             education_score=analysis['education_score'],
