@@ -1,4 +1,3 @@
-
 from flask import Flask, request, jsonify, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
@@ -124,8 +123,8 @@ class Resume(db.Model):
             'file_type': self.file_type,
             'overall_score': self.overall_score,
             'skills_score': self.skills_score,
-            'experience_score': self.experience_score,
             'education_score': self.education_score,
+            'experience_score': self.experience_score,
             'formatting_score': self.formatting_score,
             'detected_skills': self.detected_skills or [],
             'detected_experience': self.detected_experience or [],
@@ -700,8 +699,11 @@ def request_entity_too_large(error):
 
 # ── ENTRY POINT ────────────────────────────────────────────────────────────
 
-if __name__ == '__main__':
+# Initialize database tables (runs even when Gunicorn starts)
+with app.app_context():
     init_db()
+
+if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     
     print('\n' + '='*70)
