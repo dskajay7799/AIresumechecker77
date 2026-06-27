@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Resume Analyzer - Professional Assessment Tool</title>
     <style>
+        /* ─── ROOT VARIABLES ─── */
         :root {
             --primary: #6C63FF;
             --primary-dark: #5A52D5;
@@ -15,7 +16,7 @@
             --bg: #0f1117;
             --bg-2: #1a1d27;
             --bg-3: #22263a;
-            --border: rgba(255,255,255,0.07);
+            --border: rgba(255, 255, 255, 0.07);
             --text-primary: #f0f2ff;
             --text-muted: #8892b0;
             --transition: 0.22s ease;
@@ -25,11 +26,12 @@
             --bg: #f5f6fb;
             --bg-2: #ffffff;
             --bg-3: #eef0f8;
-            --border: rgba(0,0,0,0.07);
+            --border: rgba(0, 0, 0, 0.07);
             --text-primary: #1a1d2e;
             --text-muted: #6b7280;
         }
 
+        /* ─── RESET ─── */
         * {
             margin: 0;
             padding: 0;
@@ -80,7 +82,7 @@
             width: 600px;
             height: 600px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(108,99,255,0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(108, 99, 255, 0.10) 0%, transparent 70%);
             pointer-events: none;
         }
 
@@ -92,7 +94,7 @@
             width: 500px;
             height: 500px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(62,207,207,0.08) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(62, 207, 207, 0.08) 0%, transparent 70%);
             pointer-events: none;
         }
 
@@ -103,7 +105,7 @@
             padding: 2.5rem 2rem;
             width: 100%;
             max-width: 420px;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
             z-index: 1;
             animation: slideUp 0.38s ease both;
         }
@@ -170,7 +172,7 @@
         .form-input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(108,99,255,0.16);
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.16);
         }
 
         .form-input::placeholder {
@@ -192,7 +194,7 @@
             margin-bottom: 1rem;
             letter-spacing: 0.02em;
             transition: opacity var(--transition), transform var(--transition);
-            box-shadow: 0 4px 14px rgba(108,99,255,0.3);
+            box-shadow: 0 4px 14px rgba(108, 99, 255, 0.3);
         }
 
         .btn-primary:hover {
@@ -228,8 +230,8 @@
         }
 
         .error-message {
-            background: rgba(239,68,68,0.1);
-            border: 1px solid rgba(239,68,68,0.3);
+            background: rgba(239, 68, 68, 0.10);
+            border: 1px solid rgba(239, 68, 68, 0.30);
             border-radius: 8px;
             padding: 0.8rem;
             font-size: 0.85rem;
@@ -238,8 +240,8 @@
         }
 
         .success-message {
-            background: rgba(34,197,94,0.1);
-            border: 1px solid rgba(34,197,94,0.3);
+            background: rgba(34, 197, 94, 0.10);
+            border: 1px solid rgba(34, 197, 94, 0.30);
             border-radius: 8px;
             padding: 0.8rem;
             font-size: 0.85rem;
@@ -260,6 +262,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
         .navbar-brand {
@@ -275,6 +279,7 @@
             display: flex;
             align-items: center;
             gap: 1.5rem;
+            flex-wrap: wrap;
         }
 
         .user-info {
@@ -296,9 +301,9 @@
 
         .btn-logout {
             padding: 0.5rem 1rem;
-            background: rgba(239,68,68,0.15);
+            background: rgba(239, 68, 68, 0.15);
             color: #f87171;
-            border: 1px solid rgba(239,68,68,0.3);
+            border: 1px solid rgba(239, 68, 68, 0.30);
             border-radius: 6px;
             font-weight: 600;
             cursor: pointer;
@@ -306,7 +311,7 @@
         }
 
         .btn-logout:hover {
-            background: rgba(239,68,68,0.25);
+            background: rgba(239, 68, 68, 0.25);
         }
 
         /* ─── MAIN CONTENT ─── */
@@ -334,11 +339,12 @@
             text-align: center;
             margin-bottom: 2rem;
             transition: border-color var(--transition), background var(--transition);
+            cursor: pointer;
         }
 
         .upload-section:hover {
             border-color: var(--primary);
-            background: rgba(108,99,255,0.05);
+            background: rgba(108, 99, 255, 0.05);
         }
 
         .upload-icon {
@@ -378,6 +384,12 @@
             transform: translateY(-2px);
         }
 
+        .btn-upload:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
         /* ─── RESUMES LIST ─── */
         .resumes-grid {
             display: grid;
@@ -397,7 +409,7 @@
 
         .resume-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
         }
 
         .resume-filename {
@@ -452,9 +464,9 @@
         .btn-small {
             flex: 1;
             padding: 0.5rem;
-            background: rgba(108,99,255,0.15);
+            background: rgba(108, 99, 255, 0.15);
             color: var(--primary);
-            border: 1px solid rgba(108,99,255,0.3);
+            border: 1px solid rgba(108, 99, 255, 0.30);
             border-radius: 6px;
             font-weight: 600;
             font-size: 0.8rem;
@@ -463,17 +475,17 @@
         }
 
         .btn-small:hover {
-            background: rgba(108,99,255,0.25);
+            background: rgba(108, 99, 255, 0.25);
         }
 
         .btn-delete {
-            background: rgba(239,68,68,0.15);
+            background: rgba(239, 68, 68, 0.15);
             color: #f87171;
-            border-color: rgba(239,68,68,0.3);
+            border-color: rgba(239, 68, 68, 0.30);
         }
 
         .btn-delete:hover {
-            background: rgba(239,68,68,0.25);
+            background: rgba(239, 68, 68, 0.25);
         }
 
         /* ─── MODAL ─── */
@@ -484,7 +496,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0, 0, 0, 0.70);
             z-index: 100;
             align-items: center;
             justify-content: center;
@@ -511,7 +523,7 @@
         }
 
         .feedback-item {
-            background: rgba(108,99,255,0.1);
+            background: rgba(108, 99, 255, 0.10);
             border-left: 3px solid var(--primary);
             padding: 0.8rem;
             border-radius: 4px;
@@ -527,7 +539,7 @@
         }
 
         .skill-tag {
-            background: rgba(34,197,94,0.15);
+            background: rgba(34, 197, 94, 0.15);
             color: #86efac;
             padding: 0.3rem 0.7rem;
             border-radius: 4px;
@@ -538,7 +550,7 @@
             display: inline-block;
             width: 16px;
             height: 16px;
-            border: 2px solid rgba(255,255,255,0.3);
+            border: 2px solid rgba(255, 255, 255, 0.30);
             border-radius: 50%;
             border-top-color: var(--primary);
             animation: spin 0.6s linear infinite;
@@ -571,14 +583,16 @@
             font-size: 0.85rem;
         }
 
+        /* ─── RESPONSIVE ─── */
         @media (max-width: 768px) {
             .container {
                 padding: 1rem;
             }
 
             .navbar {
-                flex-wrap: wrap;
-                gap: 1rem;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.75rem;
             }
 
             .navbar-right {
@@ -601,7 +615,10 @@
     </style>
 </head>
 <body>
-    <!-- AUTH SCREEN -->
+
+    <!-- ════════════════════════════════════════════════════ -->
+    <!-- AUTH SCREEN                                        -->
+    <!-- ════════════════════════════════════════════════════ -->
     <div id="authScreen" class="auth-screen">
         <div class="auth-card">
             <div class="auth-logo">📄</div>
@@ -615,48 +632,46 @@
                 <div class="form-group">
                     <label class="form-label">Username</label>
                     <input
-                        type="text"
-                        id="authUsername"
-                        class="form-input"
-                        placeholder="john_doe"
-                        required
-                    >
+                    type="text"
+                    id="authUsername"
+                    class="form-input"
+                    placeholder="john_doe"
+                    required
+                    />
                 </div>
 
                 <div id="fullNameGroup" class="form-group hidden">
                     <label class="form-label">Full Name</label>
                     <input
-                        type="text"
-                        id="authFullName"
-                        class="form-input"
-                        placeholder="John Doe"
-                    >
+                    type="text"
+                    id="authFullName"
+                    class="form-input"
+                    placeholder="John Doe"
+                    />
                 </div>
 
                 <div id="emailGroup" class="form-group hidden">
                     <label class="form-label">Email</label>
                     <input
-                        type="email"
-                        id="authEmail"
-                        class="form-input"
-                        placeholder="john@example.com"
-                    >
+                    type="email"
+                    id="authEmail"
+                    class="form-input"
+                    placeholder="john@example.com"
+                    />
                 </div>
 
                 <div class="form-group">
                     <label class="form-label">Password</label>
                     <input
-                        type="password"
-                        id="authPassword"
-                        class="form-input"
-                        placeholder="••••••••"
-                        required
-                    >
+                    type="password"
+                    id="authPassword"
+                    class="form-input"
+                    placeholder="••••••••"
+                    required
+                    />
                 </div>
 
-                <button type="submit" class="btn-primary" id="authBtn">
-                    Sign In
-                </button>
+                <button type="submit" class="btn-primary" id="authBtn">Sign In</button>
             </form>
 
             <div class="form-switch">
@@ -668,7 +683,9 @@
         </div>
     </div>
 
-    <!-- APP SCREEN -->
+    <!-- ════════════════════════════════════════════════════ -->
+    <!-- APP SCREEN                                        -->
+    <!-- ════════════════════════════════════════════════════ -->
     <div id="appScreen" class="app-screen hidden">
         <!-- NAVBAR -->
         <div class="navbar">
@@ -688,17 +705,17 @@
             <p class="page-subtitle">Upload your resume for professional analysis and improvement suggestions</p>
 
             <!-- UPLOAD SECTION -->
-            <div class="upload-section" onclick="document.getElementById('fileInput').click()" style="cursor: pointer;">
+            <div class="upload-section" id="uploadSection">
                 <div class="upload-icon">📤</div>
                 <div class="upload-text">Upload Your Resume</div>
                 <div class="upload-subtext">PDF, TXT, or DOCX • Max 5MB</div>
-                <button type="button" class="btn-upload">Choose File</button>
+                <button type="button" class="btn-upload" id="uploadBtn">Choose File</button>
                 <input
-                    type="file"
-                    id="fileInput"
-                    onchange="handleFileUpload(event)"
-                    accept=".pdf,.txt,.docx"
-                >
+                type="file"
+                id="fileInput"
+                onchange="handleFileUpload(event)"
+                accept=".pdf,.txt,.docx"
+                />
             </div>
 
             <div id="uploadError" class="error-message hidden"></div>
@@ -715,392 +732,548 @@
         </div>
     </div>
 
-    <!-- DETAIL MODAL -->
-    <div id="detailModal" class="modal" onclick="closeDetailModal(event)">
-        <div class="modal-content" onclick="event.stopPropagation()">
+    <!-- ════════════════════════════════════════════════════ -->
+    <!-- DETAIL MODAL                                       -->
+    <!-- ════════════════════════════════════════════════════ -->
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
             <h2 class="modal-title" id="modalTitle">Resume Details</h2>
-
             <div id="modalBody"></div>
-
             <button type="button" class="btn-primary" onclick="closeDetailModal()">Close</button>
         </div>
     </div>
 
+    <!-- ════════════════════════════════════════════════════ -->
+    <!-- JAVASCRIPT                                         -->
+    <!-- ════════════════════════════════════════════════════ -->
     <script>
-        // ─── STATE ───
-        let authMode = 'login'; // 'login' or 'signup'
-        let currentUser = null;
-        let API_URL = window.location.origin;
+        (function() {
+            'use strict';
 
-        // ─── INITIALIZATION ───
-        document.addEventListener('DOMContentLoaded', async () => {
-            console.log('App loading...');
-            console.log('API URL:', API_URL);
+            // ─── CONFIG ────────────────────────────────────────────────
+            // Change this if your backend runs on a different port/origin
+            const API_URL = window.location.origin;
 
-            // Check if user is already logged in (CRITICAL FOR SESSION PERSISTENCE)
-            await checkAuthStatus();
-        });
+            // ─── STATE ────────────────────────────────────────────────
+            let authMode = 'login'; // 'login' | 'signup'
+            let currentUser = null;
 
-        // ─── SESSION CHECK (CRITICAL) ───
-        async function checkAuthStatus() {
-            try {
-                console.log('Checking authentication status...');
-                const response = await fetch(`${API_URL}/api/auth/me`, {
-                    method: 'GET',
-                    credentials: 'include', // IMPORTANT: Send session cookie
+            // ─── DOM REFS ─────────────────────────────────────────────
+            const $ = (id) => document.getElementById(id);
+            const authScreen = $('authScreen');
+            const appScreen = $('appScreen');
+            const authForm = $('authForm');
+            const authUsername = $('authUsername');
+            const authPassword = $('authPassword');
+            const authFullName = $('authFullName');
+            const authEmail = $('authEmail');
+            const authError = $('authError');
+            const authSuccess = $('authSuccess');
+            const authTitle = $('authTitle');
+            const authSubtitle = $('authSubtitle');
+            const authBtn = $('authBtn');
+            const authToggleText = $('authToggleText');
+            const authToggleLink = $('authToggleLink');
+            const fullNameGroup = $('fullNameGroup');
+            const emailGroup = $('emailGroup');
+            const userName = $('userName');
+            const userEmail = $('userEmail');
+            const resumesList = $('resumesList');
+            const uploadError = $('uploadError');
+            const uploadSuccess = $('uploadSuccess');
+            const fileInput = $('fileInput');
+            const uploadBtn = $('uploadBtn');
+            const uploadSection = $('uploadSection');
+            const detailModal = $('detailModal');
+            const modalTitle = $('modalTitle');
+            const modalBody = $('modalBody');
+
+            // ─── HELPERS ──────────────────────────────────────────────
+
+            function escapeHtml(text) {
+                if (!text) return '';
+                const div = document.createElement('div');
+                div.textContent = text;
+                return div.innerHTML;
+            }
+
+            function getResumeId(resume) {
+                return resume.id || resume._id || null;
+            }
+
+            function clearMessages() {
+                [authError, authSuccess, uploadError, uploadSuccess].forEach(el => {
+                    el.classList.add('hidden');
+                    el.textContent = '';
+                });
+            }
+
+            function showAuthError(msg) {
+                authError.textContent = msg;
+                authError.classList.remove('hidden');
+            }
+
+            function showAuthSuccess(msg) {
+                authSuccess.textContent = msg;
+                authSuccess.classList.remove('hidden');
+            }
+
+            function showUploadError(msg) {
+                uploadError.textContent = msg;
+                uploadError.classList.remove('hidden');
+            }
+
+            function showUploadSuccess(msg) {
+                uploadSuccess.textContent = msg;
+                uploadSuccess.classList.remove('hidden');
+            }
+
+            // ─── SAFE FETCH ───────────────────────────────────────────
+
+            async function safeFetch(url, options = {}) {
+                const response = await fetch(url, {
+                    ...options,
+                    credentials: 'include',
                 });
 
-                if (response.ok) {
-                    const data = await response.json();
-                    currentUser = data.user;
-                    console.log('User found:', currentUser.username);
-                    showAppScreen();
-                    loadResumes();
-                } else {
-                    console.log('No active session found, showing login');
-                    showAuthScreen();
+                const contentType = response.headers.get('content-type') || '';
+                if (!contentType.includes('application/json')) {
+                    const text = await response.text();
+                    throw new Error(`Server returned non-JSON (${contentType}): ${text.slice(0, 120)}`);
                 }
-            } catch (error) {
-                console.error('Auth check error:', error);
-                showAuthScreen();
-            }
-        }
-
-        // ─── AUTH FORM ───
-        function toggleAuthMode() {
-            authMode = authMode === 'login' ? 'signup' : 'login';
-
-            const title = document.getElementById('authTitle');
-            const subtitle = document.getElementById('authSubtitle');
-            const btn = document.getElementById('authBtn');
-            const fullNameGroup = document.getElementById('fullNameGroup');
-            const emailGroup = document.getElementById('emailGroup');
-            const toggleText = document.getElementById('authToggleText');
-            const toggleLink = document.getElementById('authToggleLink');
-
-            if (authMode === 'signup') {
-                title.textContent = 'Create Account';
-                subtitle.textContent = 'Join to analyze your resume';
-                btn.textContent = 'Create Account';
-                fullNameGroup.classList.remove('hidden');
-                emailGroup.classList.remove('hidden');
-                toggleText.textContent = 'Already have an account? ';
-                toggleLink.textContent = 'Sign in';
-            } else {
-                title.textContent = 'Sign In';
-                subtitle.textContent = 'Analyze your resume professionally';
-                btn.textContent = 'Sign In';
-                fullNameGroup.classList.add('hidden');
-                emailGroup.classList.add('hidden');
-                toggleText.textContent = "Don't have an account? ";
-                toggleLink.textContent = 'Create one';
-            }
-
-            clearMessages();
-        }
-
-        async function handleAuth(event) {
-            event.preventDefault();
-
-            const username = document.getElementById('authUsername').value.trim();
-            const password = document.getElementById('authPassword').value;
-            const fullName = document.getElementById('authFullName').value.trim();
-            const email = document.getElementById('authEmail').value.trim();
-
-            clearMessages();
-
-            try {
-                const endpoint = authMode === 'login' ? '/api/auth/login' : '/api/auth/signup';
-                const payload = authMode === 'login'
-                    ? { username, password }
-                    : { username, password, full_name: fullName, email };
-
-                const response = await fetch(`${API_URL}${endpoint}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    credentials: 'include', // IMPORTANT: Send/receive cookies
-                    body: JSON.stringify(payload)
-                });
 
                 const data = await response.json();
+                if (!response.ok) {
+                    const msg = data.error || data.message || 'Request failed';
+                    throw new Error(msg);
+                }
+                return data;
+            }
 
-                if (response.ok) {
-                    currentUser = data.user;
-                    console.log('Authentication successful:', currentUser.username);
-                    
-                    // Show success message briefly
-                    document.getElementById('authSuccess').textContent = data.message;
-                    document.getElementById('authSuccess').classList.remove('hidden');
+            // ─── AUTH MODE UI ────────────────────────────────────────
 
-                    // Delay to show message
+            function setAuthMode(mode) {
+                authMode = mode;
+                const isLogin = mode === 'login';
+
+                authTitle.textContent = isLogin ? 'Sign In' : 'Create Account';
+                authSubtitle.textContent = isLogin ? 'Analyze your resume professionally' : 'Join to analyze your resume';
+                authBtn.textContent = isLogin ? 'Sign In' : 'Create Account';
+                authToggleText.textContent = isLogin ? "Don't have an account? " : 'Already have an account? ';
+                authToggleLink.textContent = isLogin ? 'Create one' : 'Sign in';
+
+                fullNameGroup.classList.toggle('hidden', isLogin);
+                emailGroup.classList.toggle('hidden', isLogin);
+
+                // Reset form fields when switching
+                authForm.reset();
+                clearMessages();
+            }
+
+            function toggleAuthMode() {
+                setAuthMode(authMode === 'login' ? 'signup' : 'login');
+            }
+
+            // ─── AUTH HANDLERS ────────────────────────────────────────
+
+            async function handleAuth(event) {
+                event.preventDefault();
+                clearMessages();
+
+                const username = authUsername.value.trim();
+                const password = authPassword.value;
+                const fullName = authFullName.value.trim();
+                const email = authEmail.value.trim();
+
+                if (!username || !password) {
+                    showAuthError('Please fill in all required fields.');
+                    return;
+                }
+
+                if (authMode === 'signup') {
+                    if (!fullName || !email) {
+                        showAuthError('Please provide full name and email.');
+                        return;
+                    }
+                    if (!email.includes('@')) {
+                        showAuthError('Please enter a valid email address.');
+                        return;
+                    }
+                }
+
+                // Disable button during request
+                authBtn.disabled = true;
+                authBtn.textContent = authMode === 'login' ? 'Signing in…' : 'Creating account…';
+
+                try {
+                    const endpoint = authMode === 'login' ? '/api/auth/login' : '/api/auth/signup';
+                    const payload = authMode === 'login' ?
+                        { username, password } :
+                        { username, password, full_name: fullName, email };
+
+                    const data = await safeFetch(`${API_URL}${endpoint}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload),
+                    });
+
+                    // Try to extract user from different response shapes
+                    const user = data.user || data.data?.user || null;
+                    if (!user) {
+                        throw new Error('No user data returned from server.');
+                    }
+
+                    currentUser = user;
+                    showAuthSuccess(data.message || 'Success!');
+
+                    // Switch to app after a short delay
                     setTimeout(() => {
                         showAppScreen();
                         loadResumes();
-                    }, 800);
-                } else {
-                    showError(data.error || 'Authentication failed');
-                }
-            } catch (error) {
-                console.error('Auth error:', error);
-                showError('Network error: ' + error.message);
-            }
-        }
+                    }, 700);
 
-        async function handleLogout() {
-            try {
-                await fetch(`${API_URL}/api/auth/logout`, {
-                    method: 'POST',
-                    credentials: 'include'
-                });
+                } catch (err) {
+                    console.error('Auth error:', err);
+                    showAuthError(err.message || 'Authentication failed. Please try again.');
+                } finally {
+                    authBtn.disabled = false;
+                    authBtn.textContent = authMode === 'login' ? 'Sign In' : 'Create Account';
+                }
+            }
+
+            async function handleLogout() {
+                try {
+                    await safeFetch(`${API_URL}/api/auth/logout`, {
+                        method: 'POST',
+                    });
+                } catch (err) {
+                    console.warn('Logout error (ignored):', err.message);
+                }
 
                 currentUser = null;
                 showAuthScreen();
-                document.getElementById('authForm').reset();
-                authMode = 'login';
-                toggleAuthMode(); // Reset mode to login
-            } catch (error) {
-                console.error('Logout error:', error);
+                authForm.reset();
+                setAuthMode('login');
             }
-        }
 
-        // ─── FILE UPLOAD ───
-        async function handleFileUpload(event) {
-            const file = event.target.files[0];
-            if (!file) return;
+            // ─── SESSION CHECK ────────────────────────────────────────
 
-            clearMessages();
-
-            try {
-                const formData = new FormData();
-                formData.append('file', file);
-
-                const response = await fetch(`${API_URL}/api/resumes/upload`, {
-                    method: 'POST',
-                    credentials: 'include',
-                    body: formData
-                });
-
-                const data = await response.json();
-
-                if (response.ok) {
-                    document.getElementById('uploadSuccess').textContent = data.message;
-                    document.getElementById('uploadSuccess').classList.remove('hidden');
-                    document.getElementById('fileInput').value = '';
-                    
-                    setTimeout(() => {
+            async function checkAuthStatus() {
+                try {
+                    const data = await safeFetch(`${API_URL}/api/auth/me`, {
+                        method: 'GET',
+                    });
+                    const user = data.user || data.data?.user || null;
+                    if (user) {
+                        currentUser = user;
+                        showAppScreen();
                         loadResumes();
-                    }, 500);
-                } else {
-                    showUploadError(data.error || 'Upload failed');
+                        return;
+                    }
+                } catch (err) {
+                    console.log('No active session:', err.message);
                 }
-            } catch (error) {
-                console.error('Upload error:', error);
-                showUploadError('Network error: ' + error.message);
+                showAuthScreen();
             }
-        }
 
-        // ─── RESUMES ───
-        async function loadResumes() {
-            try {
-                const response = await fetch(`${API_URL}/api/resumes`, {
-                    credentials: 'include'
-                });
+            // ─── SCREEN SWITCHING ────────────────────────────────────
 
-                if (response.ok) {
-                    const data = await response.json();
-                    displayResumes(data.resumes);
-                } else if (response.status === 401) {
-                    // Session expired
-                    handleLogout();
+            function showAppScreen() {
+                authScreen.classList.add('hidden');
+                appScreen.classList.remove('hidden');
+                if (currentUser) {
+                    userName.textContent = currentUser.full_name || currentUser.username || 'User';
+                    userEmail.textContent = currentUser.email || 'user@example.com';
                 }
-            } catch (error) {
-                console.error('Load resumes error:', error);
-            }
-        }
-
-        function displayResumes(resumes) {
-            const container = document.getElementById('resumesList');
-
-            if (resumes.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-state">
-                        <div class="empty-icon">📋</div>
-                        <div class="empty-text">No resumes yet</div>
-                        <div class="empty-subtext">Upload your first resume to get started</div>
-                    </div>
-                `;
-                return;
             }
 
-            container.innerHTML = `<div class="resumes-grid">
-                ${resumes.map(resume => `
-                    <div class="resume-card">
-                        <div class="resume-filename">${escapeHtml(resume.filename)}</div>
-                        
-                        <div class="resume-score">
-                            <div class="score-item">
-                                <span class="score-label">Overall Score</span>
-                                <span class="score-value">${resume.overall_score}/100</span>
-                            </div>
-                            <div class="score-bar">
-                                <div class="score-fill" style="width: ${resume.overall_score}%"></div>
-                            </div>
+            function showAuthScreen() {
+                appScreen.classList.add('hidden');
+                authScreen.classList.remove('hidden');
+            }
 
-                            <div class="score-item">
-                                <span class="score-label">Skills</span>
-                                <span class="score-value">${resume.skills_score}/100</span>
-                            </div>
+            // ─── FILE UPLOAD ─────────────────────────────────────────
 
-                            <div class="score-item">
-                                <span class="score-label">Experience</span>
-                                <span class="score-value">${resume.experience_score}/100</span>
-                            </div>
+            function validateFile(file) {
+                const allowedTypes = [
+                    'application/pdf',
+                    'text/plain',
+                    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                ];
+                const maxSize = 5 * 1024 * 1024; // 5 MB
 
-                            <div class="score-item">
-                                <span class="score-label">Education</span>
-                                <span class="score-value">${resume.education_score}/100</span>
-                            </div>
+                if (!allowedTypes.includes(file.type)) {
+                    throw new Error('Only PDF, TXT, and DOCX files are allowed.');
+                }
+                if (file.size > maxSize) {
+                    throw new Error('File size must be under 5MB.');
+                }
+                if (file.size === 0) {
+                    throw new Error('File is empty.');
+                }
+            }
 
-                            <div class="score-item">
-                                <span class="score-label">Formatting</span>
-                                <span class="score-value">${resume.formatting_score}/100</span>
+            async function handleFileUpload(event) {
+                const file = event.target.files?.[0];
+                if (!file) return;
+
+                clearMessages();
+                uploadBtn.disabled = true;
+                uploadBtn.textContent = 'Uploading…';
+
+                try {
+                    validateFile(file);
+
+                    const formData = new FormData();
+                    formData.append('file', file);
+
+                    const data = await safeFetch(`${API_URL}/api/resumes/upload`, {
+                        method: 'POST',
+                        body: formData,
+                    });
+
+                    showUploadSuccess(data.message || 'Resume uploaded successfully!');
+                    fileInput.value = '';
+
+                    // Reload the list after a short delay
+                    setTimeout(() => loadResumes(), 500);
+
+                } catch (err) {
+                    console.error('Upload error:', err);
+                    showUploadError(err.message || 'Upload failed. Please try again.');
+                } finally {
+                    uploadBtn.disabled = false;
+                    uploadBtn.textContent = 'Choose File';
+                }
+            }
+
+            // ─── RESUMES LIST ─────────────────────────────────────────
+
+            async function loadResumes() {
+                try {
+                    const data = await safeFetch(`${API_URL}/api/resumes`, {
+                        method: 'GET',
+                    });
+                    const resumes = data.resumes || data.data?.resumes || [];
+                    displayResumes(resumes);
+                } catch (err) {
+                    console.error('Load resumes error:', err);
+                    if (err.message.includes('401') || err.message.includes('unauthorized')) {
+                        handleLogout();
+                    }
+                }
+            }
+
+            function displayResumes(resumes) {
+                if (!resumes || resumes.length === 0) {
+                    resumesList.innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-icon">📋</div>
+                            <div class="empty-text">No resumes yet</div>
+                            <div class="empty-subtext">Upload your first resume to get started</div>
+                        </div>
+                    `;
+                    return;
+                }
+
+                let html = `<div class="resumes-grid">`;
+                for (const resume of resumes) {
+                    const id = getResumeId(resume);
+                    if (!id) {
+                        console.warn('Resume missing ID:', resume);
+                        continue;
+                    }
+
+                    const filename = escapeHtml(resume.filename || 'Untitled');
+                    const overall = resume.overall_score ?? 0;
+                    const skills = resume.skills_score ?? 0;
+                    const experience = resume.experience_score ?? 0;
+                    const education = resume.education_score ?? 0;
+                    const formatting = resume.formatting_score ?? 0;
+
+                    html += `
+                        <div class="resume-card">
+                            <div class="resume-filename">${filename}</div>
+                            <div class="resume-score">
+                                <div class="score-item">
+                                    <span class="score-label">Overall Score</span>
+                                    <span class="score-value">${overall}/100</span>
+                                </div>
+                                <div class="score-bar">
+                                    <div class="score-fill" style="width: ${Math.min(100, overall)}%"></div>
+                                </div>
+                                <div class="score-item">
+                                    <span class="score-label">Skills</span>
+                                    <span class="score-value">${skills}/100</span>
+                                </div>
+                                <div class="score-item">
+                                    <span class="score-label">Experience</span>
+                                    <span class="score-value">${experience}/100</span>
+                                </div>
+                                <div class="score-item">
+                                    <span class="score-label">Education</span>
+                                    <span class="score-value">${education}/100</span>
+                                </div>
+                                <div class="score-item">
+                                    <span class="score-label">Formatting</span>
+                                    <span class="score-value">${formatting}/100</span>
+                                </div>
+                            </div>
+                            <div class="resume-actions">
+                                <button class="btn-small" onclick="window.showDetailModal('${id}')">
+                                    View Details
+                                </button>
+                                <button class="btn-small btn-delete" onclick="window.deleteResume('${id}')">
+                                    Delete
+                                </button>
                             </div>
                         </div>
+                    `;
+                }
+                html += `</div>`;
+                resumesList.innerHTML = html;
+            }
 
-                        <div class="resume-actions">
-                            <button class="btn-small" onclick="showDetailModal(${resume.id})">
-                                View Details
-                            </button>
-                            <button class="btn-small btn-delete" onclick="deleteResume(${resume.id})">
-                                Delete
-                            </button>
-                        </div>
-                    </div>
-                `).join('')}
-            </div>`;
-        }
+            // ─── DELETE RESUME ────────────────────────────────────────
 
-        async function deleteResume(id) {
-            if (!confirm('Are you sure you want to delete this resume?')) return;
+            async function deleteResume(id) {
+                if (!id) return;
+                if (!confirm('Are you sure you want to delete this resume?')) return;
 
-            try {
-                const response = await fetch(`${API_URL}/api/resumes/${id}`, {
-                    method: 'DELETE',
-                    credentials: 'include'
-                });
-
-                if (response.ok) {
+                try {
+                    await safeFetch(`${API_URL}/api/resumes/${id}`, {
+                        method: 'DELETE',
+                    });
                     loadResumes();
-                } else {
-                    showUploadError('Failed to delete resume');
+                } catch (err) {
+                    console.error('Delete error:', err);
+                    showUploadError(err.message || 'Failed to delete resume.');
                 }
-            } catch (error) {
-                console.error('Delete error:', error);
-                showUploadError('Network error: ' + error.message);
             }
-        }
 
-        // ─── DETAIL MODAL ───
-        async function showDetailModal(id) {
-            try {
-                const response = await fetch(`${API_URL}/api/resumes/${id}`, {
-                    credentials: 'include'
-                });
+            // ─── DETAIL MODAL ─────────────────────────────────────────
 
-                if (response.ok) {
-                    const data = await response.json();
-                    const resume = data.resume;
+            async function showDetailModal(id) {
+                if (!id) return;
 
-                    const html = `
+                try {
+                    const data = await safeFetch(`${API_URL}/api/resumes/${id}`, {
+                        method: 'GET',
+                    });
+                    const resume = data.resume || data.data?.resume || null;
+                    if (!resume) {
+                        throw new Error('Resume data not found.');
+                    }
+
+                    const filename = escapeHtml(resume.filename || 'Untitled');
+                    const uploadedAt = resume.uploaded_at ? new Date(resume.uploaded_at).toLocaleDateString() : 'Unknown';
+                    const fileSize = resume.file_size ? (resume.file_size / 1024).toFixed(2) + ' KB' : 'N/A';
+
+                    const overall = resume.overall_score ?? 0;
+                    const skills = resume.skills_score ?? 0;
+                    const experience = resume.experience_score ?? 0;
+                    const education = resume.education_score ?? 0;
+
+                    const detectedSkills = resume.detected_skills || [];
+                    const feedback = resume.feedback || [];
+
+                    let skillsHtml = '';
+                    if (detectedSkills.length > 0) {
+                        skillsHtml = detectedSkills.map(s => `<span class="skill-tag">${escapeHtml(s)}</span>`).join('');
+                    } else {
+                        skillsHtml = '<p style="color: var(--text-muted);">No skills detected</p>';
+                    }
+
+                    let feedbackHtml = '';
+                    if (feedback.length > 0) {
+                        feedbackHtml = feedback.map(item =>
+                            `<div class="feedback-item">✓ ${escapeHtml(item)}</div>`
+                        ).join('');
+                    } else {
+                        feedbackHtml = '<p style="color: var(--text-muted);">No feedback available</p>';
+                    }
+
+                    modalBody.innerHTML = `
                         <div>
-                            <p><strong>File:</strong> ${escapeHtml(resume.filename)}</p>
-                            <p><strong>Uploaded:</strong> ${new Date(resume.uploaded_at).toLocaleDateString()}</p>
-                            <p><strong>File Size:</strong> ${(resume.file_size / 1024).toFixed(2)} KB</p>
+                            <p><strong>File:</strong> ${filename}</p>
+                            <p><strong>Uploaded:</strong> ${uploadedAt}</p>
+                            <p><strong>File Size:</strong> ${fileSize}</p>
 
                             <h3 style="margin-top: 1.5rem; margin-bottom: 1rem;">Scores</h3>
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                                 <div>
-                                    <p><strong>Overall:</strong> ${resume.overall_score}/100</p>
-                                    <p><strong>Skills:</strong> ${resume.skills_score}/100</p>
+                                    <p><strong>Overall:</strong> ${overall}/100</p>
+                                    <p><strong>Skills:</strong> ${skills}/100</p>
                                 </div>
                                 <div>
-                                    <p><strong>Experience:</strong> ${resume.experience_score}/100</p>
-                                    <p><strong>Education:</strong> ${resume.education_score}/100</p>
+                                    <p><strong>Experience:</strong> ${experience}/100</p>
+                                    <p><strong>Education:</strong> ${education}/100</p>
                                 </div>
                             </div>
 
                             <h3 style="margin-top: 1.5rem; margin-bottom: 1rem;">Detected Skills</h3>
-                            <div class="skills-list">
-                                ${(resume.detected_skills || []).length > 0
-                                    ? resume.detected_skills.map(skill => 
-                                        `<span class="skill-tag">${escapeHtml(skill)}</span>`
-                                    ).join('')
-                                    : '<p style="color: var(--text-muted);">No skills detected</p>'
-                                }
-                            </div>
+                            <div class="skills-list">${skillsHtml}</div>
 
                             <h3 style="margin-top: 1.5rem; margin-bottom: 1rem;">Feedback</h3>
-                            <div>
-                                ${(resume.feedback || []).map(item => 
-                                    `<div class="feedback-item">✓ ${escapeHtml(item)}</div>`
-                                ).join('')}
-                            </div>
+                            <div>${feedbackHtml}</div>
                         </div>
                     `;
 
-                    document.getElementById('modalTitle').textContent = 'Resume Analysis Details';
-                    document.getElementById('modalBody').innerHTML = html;
-                    document.getElementById('detailModal').classList.add('active');
+                    modalTitle.textContent = 'Resume Analysis Details';
+                    detailModal.classList.add('active');
+
+                } catch (err) {
+                    console.error('Detail modal error:', err);
+                    showUploadError(err.message || 'Could not load resume details.');
                 }
-            } catch (error) {
-                console.error('Detail modal error:', error);
             }
-        }
 
-        function closeDetailModal(event) {
-            if (event && event.target.id !== 'detailModal') return;
-            document.getElementById('detailModal').classList.remove('active');
-        }
-
-        // ─── UI HELPERS ───
-        function showAppScreen() {
-            document.getElementById('authScreen').classList.add('hidden');
-            document.getElementById('appScreen').classList.remove('hidden');
-            if (currentUser) {
-                document.getElementById('userName').textContent = currentUser.full_name;
-                document.getElementById('userEmail').textContent = currentUser.email;
+            function closeDetailModal() {
+                detailModal.classList.remove('active');
             }
-        }
 
-        function showAuthScreen() {
-            document.getElementById('appScreen').classList.add('hidden');
-            document.getElementById('authScreen').classList.remove('hidden');
-        }
+            // ─── MODAL BACKDROP CLICK ────────────────────────────────
 
-        function showError(message) {
-            const el = document.getElementById('authError');
-            el.textContent = message;
-            el.classList.remove('hidden');
-        }
+            detailModal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeDetailModal();
+                }
+            });
 
-        function showUploadError(message) {
-            const el = document.getElementById('uploadError');
-            el.textContent = message;
-            el.classList.remove('hidden');
-        }
+            // ─── UPLOAD SECTION CLICK ────────────────────────────────
 
-        function clearMessages() {
-            document.getElementById('authError').classList.add('hidden');
-            document.getElementById('authSuccess').classList.add('hidden');
-            document.getElementById('uploadError').classList.add('hidden');
-            document.getElementById('uploadSuccess').classList.add('hidden');
-        }
+            uploadSection.addEventListener('click', function(e) {
+                // Don't trigger if the user clicked the button (button has its own click handler)
+                if (e.target.closest('.btn-upload')) return;
+                fileInput.click();
+            });
 
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
+            uploadBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                fileInput.click();
+            });
+
+            // ─── EXPOSE GLOBALLY ──────────────────────────────────────
+
+            window.handleAuth = handleAuth;
+            window.handleLogout = handleLogout;
+            window.toggleAuthMode = toggleAuthMode;
+            window.handleFileUpload = handleFileUpload;
+            window.deleteResume = deleteResume;
+            window.showDetailModal = showDetailModal;
+            window.closeDetailModal = closeDetailModal;
+
+            // ─── INIT ─────────────────────────────────────────────────
+
+            document.addEventListener('DOMContentLoaded', function() {
+                console.log('🚀 Resume Analyzer frontend loaded.');
+                console.log('📡 API URL:', API_URL);
+                setAuthMode('login');
+                checkAuthStatus();
+            });
+
+        })();
     </script>
+
 </body>
 </html>
